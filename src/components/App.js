@@ -6,11 +6,11 @@ class Timer extends React.Component {
     this.state = { time: 0, x: 0, y: 0 };
     this.renderBallOrButton = this.renderBallOrButton.bind(this)
     this.buttonClickHandler = this.buttonClickHandler.bind(this)
-    this.keyPress=this.keyPress.bind(this);
+    this.keyPressed=this.keyPressed.bind(this);
     this.timerRuns=this.timerRuns.bind(this);
     this.interval_id=null;
   }
-  keyPress(event) {
+  keyPressed(event) {
     if(this.state.time > 0){
       if(event.keyCode === 39) { //right
         let newX= this.state.x + 5;
@@ -42,11 +42,11 @@ class Timer extends React.Component {
     }
   }
   componentDidMount() {
-    document.addEventListener("keydown", this.keyPress);
+    document.addEventListener("keydown", this.keyPressed);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.keyPress)
+    document.removeEventListener('keydown', this.keyPressed)
   }
 
   renderBallOrButton() {
