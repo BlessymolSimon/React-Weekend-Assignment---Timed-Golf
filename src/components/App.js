@@ -11,7 +11,6 @@ class Timer extends React.Component {
     this.interval_id=null;
   }
   keyPressed(event) {
-    if(this.state.time > 0){
       if(event.keyCode === 39) { //right
         let newX= this.state.x + 5;
         this.setState({
@@ -36,7 +35,6 @@ class Timer extends React.Component {
           y: newY,
         })  
       }
-    }
   }
   componentDidUpdate() {
     if(this.state.x === 250 && this.state.y ===250) {
