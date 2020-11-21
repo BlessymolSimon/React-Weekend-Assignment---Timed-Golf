@@ -87,7 +87,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div className="playground">
-        <h3 className="heading-timer">{this.state.time -1}</h3>
+        <h3 className="heading-timer">{this.state.time}</h3>
         <div className="hole" style={
           {
             position : "absolute",
