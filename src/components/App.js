@@ -54,7 +54,7 @@ class Timer extends React.Component {
 
   renderBallOrButton() {
 		if (this.state.time > 0) {
-      return <div>
+      return <React.Fragment>
         <div className="ball" style={
           {
             position : "absolute",
@@ -70,7 +70,7 @@ class Timer extends React.Component {
             top : "250 px"
           }
         }></div>
-      </div>
+      </React.Fragment>
 		} else {
       return <button className="start" onClick={this.buttonClickHandler} >start</button>
 		}
