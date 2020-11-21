@@ -61,15 +61,7 @@ class Timer extends React.Component {
             left : this.state.x+"px" ,
             top : this.state.y+"px"
           }
-        }></div>
-        <h3 className="heading-timer">{this.state.time -1}</h3>
-        <div className="hole" style={
-          {
-            position : "absolute",
-            left : "250 px" ,
-            top : "250 px"
-          }
-        }></div>
+        }></div>  
       </React.Fragment>
 		} else {
       return <button className="start" onClick={this.buttonClickHandler} >start</button>
@@ -95,6 +87,14 @@ class Timer extends React.Component {
   render() {
     return (
       <div className="playground">
+        <h3 className="heading-timer">{this.state.time -1}</h3>
+        <div className="hole" style={
+          {
+            position : "absolute",
+            left : "250 px" ,
+            top : "250 px"
+          }
+        }></div>
         {this.renderBallOrButton()}
       </div>
     );
