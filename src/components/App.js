@@ -36,18 +36,21 @@ class Timer extends React.Component {
           y: newY,
         })  
       }
-      if(this.state.x === 250 && this.state.y ===250) {
-        clearInterval(this.interval_id);
-      }
     }
   }
-  componentDidMount() {
-    document.addEventListener("keydown", this.keyPressed);
+  componentDidUpdate() {
+    if(this.state.x === 250 && this.state.y ===250) {
+      clearInterval(this.interval_id);
+      document.removeEventListener('keydown', this.keyPressed)
+    }
   }
+  // componentDidMount() {
+  //   document.addEventListener("keydown", this.keyPressed);
+  // }
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.keyPressed)
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener('keydown', this.keyPressed)
+  // }
 
   renderBallOrButton() {
 		if (this.state.time > 0) {
@@ -81,6 +84,7 @@ class Timer extends React.Component {
 
   buttonClickHandler() {
     //render ball, render hole, render timer, start timer
+    document.addEventListener("keydown", this.keyPressed);
     console.log("start btn clicked");
     let new_time=this.state.time + 1;
     this.setState({time: new_time});
