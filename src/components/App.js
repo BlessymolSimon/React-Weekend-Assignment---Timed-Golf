@@ -4,7 +4,7 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { time: 0, x: 0, y: 0 };
-    this.renderBallOrButton = this.renderBallOrButton.bind(this)
+    // this.renderBallOrButton = this.renderBallOrButton.bind(this)
     this.buttonClickHandler = this.buttonClickHandler.bind(this)
     this.keyPressed=this.keyPressed.bind(this);
     this.timerRuns=this.timerRuns.bind(this);
@@ -44,29 +44,22 @@ class Timer extends React.Component {
       document.removeEventListener('keydown', this.keyPressed)
     }
   }
-  // componentDidMount() {
-  //   document.addEventListener("keydown", this.keyPressed);
-  // }
 
-  // componentWillUnmount() {
-  //   document.removeEventListener('keydown', this.keyPressed)
+  // renderBallOrButton() {
+	// 	if (this.state.time > 0) {
+  //     return <React.Fragment>
+  //       <div className="ball" style={
+  //         {
+  //           position : "absolute",
+  //           left : this.state.x+"px" ,
+  //           top : this.state.y+"px"
+  //         }
+  //       }></div>  
+  //     </React.Fragment>
+	// 	} else {
+  //     return <button className="start" onClick={this.buttonClickHandler} >start</button>
+	// 	}
   // }
-
-  renderBallOrButton() {
-		if (this.state.time > 0) {
-      return <React.Fragment>
-        <div className="ball" style={
-          {
-            position : "absolute",
-            left : this.state.x+"px" ,
-            top : this.state.y+"px"
-          }
-        }></div>  
-      </React.Fragment>
-		} else {
-      return <button className="start" onClick={this.buttonClickHandler} >start</button>
-		}
-  }
 
   timerRuns() {
     let new_time=this.state.time + 1;
@@ -78,8 +71,10 @@ class Timer extends React.Component {
     //render ball, render hole, render timer, start timer
     document.addEventListener("keydown", this.keyPressed);
     console.log("start btn clicked");
-    let new_time=this.state.time + 1;
-    this.setState({time: new_time});
+    this.setState ( { time: 0, x: 0, y: 0 } );
+    // let new_time=this.state.time + 1;
+    // this.setState({time: new_time});
+    clearInterval(this.interval_id);
     this.interval_id=setInterval(this.timerRuns, 1000);  
   }
 
@@ -87,6 +82,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div className="playground">
+        <button className="start ballProvider" onClick={this.buttonClickHandler} >start</button>
         <h3 className="heading-timer">{this.state.time}</h3>
         <div className="hole" style={
           {
@@ -95,7 +91,13 @@ class Timer extends React.Component {
             top : "250 px"
           }
         }></div>
-        {this.renderBallOrButton()}
+        <div className="ball" style={
+          {
+            position : "absolute",
+            left : this.state.x+"px" ,
+            top : this.state.y+"px"
+          }
+        }></div>
       </div>
     );
   }
